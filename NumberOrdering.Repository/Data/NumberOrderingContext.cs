@@ -3,8 +3,12 @@ using NumberOrdering.Repository.Models;
 
 namespace NumberOrdering.Repository.Data
 {
-    internal class NumberOrderingContext : DbContext
+    public class NumberOrderingContext : DbContext
     {
+        public NumberOrderingContext(DbContextOptions<NumberOrderingContext> options): base(options)
+        {
+        }
+
         public DbSet<Number> Numbers { get; set; }
     }
 }

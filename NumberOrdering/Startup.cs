@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using NumberOrdering.Repository.Data;
 
 namespace NumberOrdering
 {
@@ -24,6 +26,9 @@ namespace NumberOrdering
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NumberOrdering", Version = "v1" });
             });
+
+            services.AddDbContext<NumberOrderingContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("NumberOrderingDB")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

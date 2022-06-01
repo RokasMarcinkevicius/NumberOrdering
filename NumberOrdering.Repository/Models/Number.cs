@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace NumberOrdering.Repository.Models
 {
-    internal class Number
+    public class Number
     {
+        [Key]
+        public Guid Guid { get; set; }
         public int Value { get; set; }
     }
 }
