@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using NumberOrdering.Repository.Data;
+using NumberOrdering.Services.Interfaces;
+using NumberOrdering.Services.Services;
 
 namespace NumberOrdering
 {
@@ -29,6 +31,9 @@ namespace NumberOrdering
 
             services.AddDbContext<NumberOrderingContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("NumberOrderingDB")));
+
+            SetUpDependencyInjection(services);
+            SetUpEntityFramework(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,17 @@ namespace NumberOrdering
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void SetUpDependencyInjection(IServiceCollection services)
+        {
+            services.AddTransient<IBusinessService, BusinessService>();
+            services.AddTransient<INumberSorterService, NumberSorterService>();
+        }
+
+        private void SetUpEntityFramework(IServiceCollection services)
+        {
+            services.AddScoped<NumberOrderingContext>();
         }
     }
 }
