@@ -2,7 +2,7 @@
 
 namespace NumberOrdering.Services.Interfaces
 {
-    internal interface INumberSorterService
+    public interface INumberSorterService
     {
         // Comparison-Based Sorting:
         public List<int> BubbleSort(List<int> arrayToSort);
