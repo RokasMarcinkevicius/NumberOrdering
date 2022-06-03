@@ -18,6 +18,8 @@ namespace NumberOrdering.Controllers
             _businessService = businessService;
         }
 
+        // TODO Add proper controller info to swagger
+        // Submit a file with the number list
         [HttpPost("ImportAndOrderNumberList")]
         [ProducesResponseType(typeof(List<Number>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
@@ -27,16 +29,19 @@ namespace NumberOrdering.Controllers
             return _businessService.ImportNumberList(file);
         }
 
+        // TODO Add proper controller info to swagger
+        // Submit number list and a filename to which it needs to be saved to
         [HttpPost("ImportNumberLineAndOrderNumberList")]
         [ProducesResponseType(typeof(List<Number>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [ProducesResponseType(typeof(ErrorResponse), 500)]
-        public List<int> ImportIntegerList(List<int> numberList)
+        public List<int> ImportIntegerList(List<int> numberList, string fileName)
         {
-            return _businessService.ImportNumberList(numberList);
+            return _businessService.ImportNumberList(numberList, fileName);
         }
 
-        /*
+        // TODO Add proper controller info to swagger
+        // Loads last file content and orders it
         [HttpGet("LoadLastFileContent")]
         [ProducesResponseType(typeof(List<Number>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
@@ -45,6 +50,5 @@ namespace NumberOrdering.Controllers
         {
             return _businessService.LoadLatestFile();
         }
-        */
     }
 }
