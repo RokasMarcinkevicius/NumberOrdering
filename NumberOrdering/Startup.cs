@@ -62,6 +62,7 @@ namespace NumberOrdering
         {
             services.AddTransient<IBusinessService, BusinessService>();
             services.AddTransient<INumberSorterService, NumberSorterService>();
+            services.AddTransient<IFileService, FileService>();
         }
 
         private void SetUpEntityFramework(IServiceCollection services)
