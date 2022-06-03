@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace NumberOrdering.Services.Interfaces
 {
-    internal interface IFileService
+    public interface IFileService
     {
-        public bool SaveToFile(string fileName);
-        public int LoadFileContent(string fileName);
-        public List<int> LoadLatestFile();
-
+        public bool SaveToFile(List<int> numbers, string fileName);
+        public List<int> LoadLatestFile(string fileName = null);
+        public string ConvertFileToString(IFormFile file);
     }
 }
