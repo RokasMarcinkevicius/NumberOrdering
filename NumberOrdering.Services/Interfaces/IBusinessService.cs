@@ -7,5 +7,6 @@ namespace NumberOrdering.Services.Interfaces
     {
         public List<int> ImportNumberList(IFormFile file);
         public List<int> ImportNumberList(List<int> numberList, string fileName);
+        public List<int> LoadLatestFile();
     }
 }
