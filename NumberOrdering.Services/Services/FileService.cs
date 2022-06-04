@@ -22,6 +22,10 @@ namespace NumberOrdering.Services.Services
         {
             try
             {
+                var configuration = ConfigurationOperations.ReadConfiguration();
+                configuration.ConnectionStrings.LastFile = fileName;
+                ConfigurationOperations.SaveChanges(configuration);
+
                 File.WriteAllText(fileName, JsonSerializer.Serialize<List<int>>(numbers));
                 return true;
             }
@@ -38,10 +42,8 @@ namespace NumberOrdering.Services.Services
             {
                 if(fileName == null)
                 {
-                    var configuration = ConfigurationOperations.ReadConfiguration();
-                    ConfigurationOperations.SaveChanges(configuration);
-
-                    return JsonSerializer.Deserialize<List<int>>(File.ReadAllText(configuration.ConnectionStrings.LastFile));
+                    return JsonSerializer.Deserialize<List<int>>(
+                        File.ReadAllText(ConfigurationOperations.ReadConfiguration().ConnectionStrings.LastFile));
                 }
                 else
                 {
