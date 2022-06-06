@@ -18,10 +18,14 @@ namespace NumberOrdering.Controllers
             _businessService = businessService;
         }
 
-        // TODO Add proper controller info to swagger
-        // Submit a file with the number list
+        /// <summary>
+        /// Imports your selected file, orders the number list and returns it
+        /// </summary>
+        /// <response code="200">Import successful, number list ordered. </response>
+        /// <response code="400">Imported list has invalid values. </response>
+        /// <response code="500">Oops! Can't import file/order list right now. </response> 
         [HttpPost("ImportAndOrderNumberList")]
-        [ProducesResponseType(typeof(List<Number>), 200)]
+        [ProducesResponseType(typeof(List<int>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [ProducesResponseType(typeof(ErrorResponse), 500)]
         public List<int> ImportFileAndOrderNumberList(IFormFile file)
@@ -29,8 +33,12 @@ namespace NumberOrdering.Controllers
             return _businessService.ImportNumberList(file);
         }
 
-        // TODO Add proper controller info to swagger
-        // Submit number list and a filename to which it needs to be saved to
+        /// <summary>
+        /// Submit number list and a filename to which it needs to be saved to, return it ordered.
+        /// </summary>
+        /// <response code="200">Import successful, number list ordered. </response>
+        /// <response code="400">Imported list has invalid values. </response>
+        /// <response code="500">Oops! Can't order list right now. </response> 
         [HttpPost("ImportNumberLineAndOrderNumberList")]
         [ProducesResponseType(typeof(List<Number>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
@@ -40,8 +48,12 @@ namespace NumberOrdering.Controllers
             return _businessService.ImportNumberList(numberList, fileName);
         }
 
-        // TODO Add proper controller info to swagger
-        // Loads last file content and orders it
+        /// <summary>
+        /// Loads last file.
+        /// </summary>
+        /// <response code="200">File loading successful. </response>
+        /// <response code="400">File not found. </response>
+        /// <response code="500">Oops! Can't load file right now. </response> 
         [HttpGet("LoadLastFileContent")]
         [ProducesResponseType(typeof(List<Number>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
