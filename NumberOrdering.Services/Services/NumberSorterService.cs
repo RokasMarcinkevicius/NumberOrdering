@@ -6,7 +6,7 @@ namespace NumberOrdering.Services.Services
 {
     public class NumberSorterService : INumberSorterService
     {
-        public List<int> BubbleSort(List<int> arrayToSort)
+        public virtual List<int> BubbleSort(List<int> arrayToSort)
         {
             int n = arrayToSort.Count;
             for (int i = 0; i < n - 1; i++)
@@ -21,34 +21,7 @@ namespace NumberOrdering.Services.Services
             return arrayToSort;
         }
 
-        public List<int> CountingSort(List<int> arrayToSort)
-        {
-            int max = arrayToSort.Count;
-            int min = 0;
-            int range = max - min + 1;
-            int[] count = new int[range];
-            int[] output = new int[arrayToSort.Count];
-            for (int i = 0; i < arrayToSort.Count; i++)
-            {
-                count[arrayToSort[i] - min]++;
-            }
-            for (int i = 1; i < count.Length; i++)
-            {
-                count[i] += count[i - 1];
-            }
-            for (int i = arrayToSort.Count - 1; i >= 0; i--)
-            {
-                output[count[arrayToSort[i] - min] - 1] = arrayToSort[i];
-                count[arrayToSort[i] - min]--;
-            }
-            for (int i = 0; i < arrayToSort.Count; i++)
-            {
-                arrayToSort[i] = output[i];
-            }
-            return arrayToSort;
-        }
-
-        public List<int> MergeSort(List<int> arrayToSort)
+        public virtual List<int> MergeSort(List<int> arrayToSort)
         {
             if (arrayToSort.Count <= 1)
             {
@@ -108,7 +81,7 @@ namespace NumberOrdering.Services.Services
             return result;
         }
 
-        public List<int> QuickSort(List<int> arrayToSort)
+        public virtual List<int> QuickSort(List<int> arrayToSort)
         {
             if (arrayToSort.Count <= 1)
                 return arrayToSort;
