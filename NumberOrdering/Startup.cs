@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using NumberOrdering.Repository.Data;
+using NumberOrdering.Repository.Interfaces;
+using NumberOrdering.Repository.Services;
 using NumberOrdering.Services.Interfaces;
 using NumberOrdering.Services.Services;
 

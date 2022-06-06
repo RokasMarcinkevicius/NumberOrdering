@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using NumberOrdering.Repository.Models;
-using NumberOrdering.Services.Interfaces;
+using NumberOrdering.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace NumberOrdering.Services.Services
+namespace NumberOrdering.Repository.Services
 {
     public class FileService : IFileService
     {

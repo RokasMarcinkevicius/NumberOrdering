@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using NumberOrdering.Repository.Data;
+using NumberOrdering.Repository.Interfaces;
 using NumberOrdering.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace NumberOrdering.Services.Services
 
         private bool ExecutePerformanceMeasurements(List<int> numberList)
         {
+            // TODO Display logged information to end user
             try
             {
                 _logger.LogInformation("Bubble Sort completed sorting in " + MeasurePerformance(() => _numberSorterService.BubbleSort(numberList)) + "ms");

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 
-namespace NumberOrdering.Services.Interfaces
+namespace NumberOrdering.Repository.Interfaces
 {
     public interface IFileService
     {
