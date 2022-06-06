@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,9 @@ namespace NumberOrdering
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NumberOrdering", Version = "v1" });
+
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "NumberOrdering.xml");
+                c.IncludeXmlComments(filePath);
             });
 
             services.AddDbContext<NumberOrderingContext>(options =>

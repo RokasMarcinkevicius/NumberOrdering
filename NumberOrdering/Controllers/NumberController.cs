@@ -40,7 +40,7 @@ namespace NumberOrdering.Controllers
         /// <response code="400">Imported list has invalid values. </response>
         /// <response code="500">Oops! Can't order list right now. </response> 
         [HttpPost("ImportNumberLineAndOrderNumberList")]
-        [ProducesResponseType(typeof(List<Number>), 200)]
+        [ProducesResponseType(typeof(List<int>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [ProducesResponseType(typeof(ErrorResponse), 500)]
         public List<int> ImportIntegerList(List<int> numberList, string fileName)
@@ -55,7 +55,7 @@ namespace NumberOrdering.Controllers
         /// <response code="400">File not found. </response>
         /// <response code="500">Oops! Can't load file right now. </response> 
         [HttpGet("LoadLastFileContent")]
-        [ProducesResponseType(typeof(List<Number>), 200)]
+        [ProducesResponseType(typeof(List<int>), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
         [ProducesResponseType(typeof(ErrorResponse), 500)]
         public List<int> LoadLastFileContent()
