@@ -1,65 +1,70 @@
-using NumberOrdering.Services.Interfaces;
-using Xunit;
+using Microsoft.AspNetCore.Http;
 using Moq;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using NumberOrdering.Repository.Interfaces;
+using NumberOrdering.Repository.Services;
+using NumberOrdering.Services.Services;
 
 namespace NumberOrdering.Tests
 {
     public class BusinessServiceTest
     {
+        private readonly BusinessService _businessService;
+        private NumberSorterService _mockNumberSorterService;
+        private Mock<FileService> _mockFileService;
+
+        public BusinessServiceTest()
+        {
+            _mockNumberSorterService = new NumberSorterService();
+            _mockFileService = new Mock<FileService>(null);
+            _businessService = new BusinessService(_mockNumberSorterService, _mockFileService.Object, null);
+        }
+
+        private IFormFile GetIFormFile()
+        {
+            //Setup mock file using a memory stream
+            var content = "[0,1,2,3,4,6]";
+            var fileName = "test";
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(content);
+            writer.Flush();
+            stream.Position = 0;
+
+            return new FormFile(stream, 0, stream.Length, "test", fileName);
+        }
+
         // For public List<int> ImportNumberList(IFormFile file)
         [Fact]
         public void ImportNumberListCallsImportsFile()
         {
-            // businessServiceMock.Setup(p => p.ImportNumberList(It.IsAny<List<int>>(), It.IsAny<string>())).Returns(It.IsAny<List<int>>);
-            // standard setup, check if file import is called
-        }
+            // Arrange + Act
+            try
+            {
+                _businessService.ImportNumberList(GetIFormFile());
+            }
+            catch (ArgumentNullException)
+            {
+                // TODO Find a better way to setup IFormFile
+            }
+            // Assert
+            finally
+            {
+                _mockFileService.Verify(m => m.ConvertFileToString(It.IsAny<IFormFile>()), Times.Once());
+            }
 
-        [Fact]
-        public void ImportNumberListWrongFileFormatThrowsException()
-        {
-            // setup incorrect file, must throw exception
-        }
-
-        [Fact]
-        public void ImportNumberListSerializesFile()
-        {
-            // standard setup, check if serialization is called
-        }
-
-        [Fact]
-        public void ImportNumberListFileReturnsOrderedList()
-        {
-            // standard setup, check if mock list input returns ordered mock list
-        }
-
-        [Fact]
-        public void ImportNumberListFileCallsPerfomanceMeasurement()
-        {
-            // standard setup, check if perfomance measurement is called
         }
 
         // For public List<int> ImportNumberList(List<int> numberList, string fileName)
         [Fact]
         public void ImportNumberListReturnsOrderedList()
         {
-            // standard setup, check if mock list input returns ordered mock list
-        }
+            // Arrange
+            List<int> numberList = new List<int>(new int[] { 1, 3, 4, 2, 7 });
+            List<int> sortedList = new List<int>(new int[] { 1, 2, 3, 4, 7 });
+            string fileName = "Mock";
 
-        [Fact]
-        public void ImportNumberListCallsPerfomanceMeasurement()
-        {
-            // standard setup, check if perfomance measurement is called
-        }
-
-        [Fact]
-        public void ImportNumberListCallsSaveToFile()
-        {
-            // standard setup, check if save to file function is called
+            // Act + Assert
+            Assert.Equal(_businessService.ImportNumberList(numberList, fileName), sortedList);
+            _mockFileService.Verify(m => m.SaveToFile(It.IsAny<List<int>>(), It.IsAny<string>()), Times.Once());
         }
     }
 }
