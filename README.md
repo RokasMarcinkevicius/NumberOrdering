@@ -16,3 +16,6 @@ Requirements:
 Bonus points:
 
 1. Multiple sorting algorithms are used and time performance is measured between them.
+
+Tips for running:
+Type "dotnet restore" and "dotnet run" in the terminal.
