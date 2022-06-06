@@ -18,7 +18,7 @@ namespace NumberOrdering.Repository.Services
             _logger = logger;
         }
         
-        public bool SaveToFile(List<int> numbers, string fileName)
+        public virtual bool SaveToFile(List<int> numbers, string fileName)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace NumberOrdering.Repository.Services
             
         }
 
-        public string ConvertFileToString(IFormFile file)
+        public virtual string ConvertFileToString(IFormFile file)
         {
             using (var reader = new StreamReader(file.OpenReadStream()))
             {
