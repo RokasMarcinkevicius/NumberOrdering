@@ -1,60 +1,65 @@
-namespace NumberOrdering.Tests;
+using NumberOrdering.Services.Interfaces;
+using Xunit;
+using Moq;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using NumberOrdering.Repository.Interfaces;
 
-public class BusinessServiceTest
+namespace NumberOrdering.Tests
 {
-    // For public List<int> ImportNumberList(IFormFile file)
-    [Fact]
-    public void ImportNumberListCallsImportsFile()
+    public class BusinessServiceTest
     {
+        // For public List<int> ImportNumberList(IFormFile file)
+        [Fact]
+        public void ImportNumberListCallsImportsFile()
+        {
+            // businessServiceMock.Setup(p => p.ImportNumberList(It.IsAny<List<int>>(), It.IsAny<string>())).Returns(It.IsAny<List<int>>);
+            // standard setup, check if file import is called
+        }
 
-    }
+        [Fact]
+        public void ImportNumberListWrongFileFormatThrowsException()
+        {
+            // setup incorrect file, must throw exception
+        }
 
-    [Fact]
-    public void ImportNumberListWrongFileFormatThrowsException()
-    {
+        [Fact]
+        public void ImportNumberListSerializesFile()
+        {
+            // standard setup, check if serialization is called
+        }
 
-    }
+        [Fact]
+        public void ImportNumberListFileReturnsOrderedList()
+        {
+            // standard setup, check if mock list input returns ordered mock list
+        }
 
-    [Fact]
-    public void ImportNumberListSerializesFile()
-    {
+        [Fact]
+        public void ImportNumberListFileCallsPerfomanceMeasurement()
+        {
+            // standard setup, check if perfomance measurement is called
+        }
 
-    }
+        // For public List<int> ImportNumberList(List<int> numberList, string fileName)
+        [Fact]
+        public void ImportNumberListReturnsOrderedList()
+        {
+            // standard setup, check if mock list input returns ordered mock list
+        }
 
-    [Fact]
-    public void ImportNumberListFileReturnsOrderedList()
-    {
+        [Fact]
+        public void ImportNumberListCallsPerfomanceMeasurement()
+        {
+            // standard setup, check if perfomance measurement is called
+        }
 
-    }
-
-    [Fact]
-    public void ImportNumberListFileCallsPerfomanceMeasurement()
-    {
-
-    }
-
-    // For public List<int> ImportNumberList(List<int> numberList, string fileName)
-    [Fact]
-    public void ImportNumberListReturnsOrderedList()
-    {
-
-    }
-
-    [Fact]
-    public void ImportNumberListCallsPerfomanceMeasurement()
-    {
-
-    }
-
-    [Fact]
-    public void ImportNumberListCallsSaveToFile()
-    {
-
-    }
-
-    [Fact]
-    public void LoadLatestFileCallsLoadFile()
-    {
-
+        [Fact]
+        public void ImportNumberListCallsSaveToFile()
+        {
+            // standard setup, check if save to file function is called
+        }
     }
 }
