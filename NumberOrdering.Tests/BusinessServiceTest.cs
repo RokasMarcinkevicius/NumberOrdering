@@ -57,7 +57,7 @@ namespace NumberOrdering.Tests
         [Fact]
         public void ImportNumberListReturnsOrderedList()
         {
-            // Arrange a
+            // Arrange
             List<int> numberList = new List<int>(new int[] { 1, 3, 4, 2, 7 });
             List<int> sortedList = new List<int>(new int[] { 1, 2, 3, 4, 7 });
             string fileName = "Mock";
